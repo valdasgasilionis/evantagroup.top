@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,8 +13,22 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () {   
     return view('welcome');
+});
+
+Route::post('/charge', function (Request $request) {
+    // Set your secret key: remember to change this to your live secret key in production
+    // See your keys here: https://dashboard.stripe.com/account/apikeys
+    \Stripe\Stripe::setApiKey(config("services.stripe.secret"));
+
+    $intent = \Stripe\PaymentIntent::create([
+        'amount' => $request->price,
+        'currency' => 'eur',
+    ]);
+    return view('checkout', [
+        'intent' => $intent
+    ]);
 });
 
 Auth::routes();

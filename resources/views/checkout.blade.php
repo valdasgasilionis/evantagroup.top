@@ -75,7 +75,38 @@
 
             .m-b-md {
                 margin-bottom: 30px;
-            }           
+            }   
+            /**
+            * The CSS shown here will not be introduced in the Quickstart guide, but shows
+            * how you can use CSS to style your Element's container.
+            */
+            .StripeElement {
+            box-sizing: border-box;
+
+            height: 40px;
+
+            padding: 10px 12px;
+
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background-color: white;
+
+            box-shadow: 0 1px 3px 0 #e6ebf1;
+            -webkit-transition: box-shadow 150ms ease;
+            transition: box-shadow 150ms ease;
+            }
+
+            .StripeElement--focus {
+            box-shadow: 0 1px 3px 0 #cfd7df;
+            }
+
+            .StripeElement--invalid {
+            border-color: #fa755a;
+            }
+
+            .StripeElement--webkit-autofill {
+            background-color: #fefde5 !important;
+            }        
         </style>
     </head>
     <body>
@@ -94,14 +125,50 @@
                 </div>
             @endif
         <div class="container">
-            <form action="/charge" method="post">                
-                @csrf
-                    <div class="form-group">
-                        <label for="amount">price</label>
-                        <input type="number" class="form-control" name="price" placeholder="eur">
-                    </div>
-                <input type="submit" class="form-control" value="submit"> 
-            </form>
+        
+            <div class="form-group">
+                <label for="amount">You are paying:</label>            
+                <input type="text" class="form-control" value="{{$intent->amount}}" readonly>
+            </div>
+            <div class="form-group">              
+                <label for="cardholder-name">cardholder name</label>            
+                <input id="cardholder-name" class="form-control" type="text">
+            </div>
+            <!-- placeholder for Elements -->
+            <div class="form-group"  id="card-element"></div>
+            <div class="form-group">
+                <button id="card-button" class="form-control" data-secret="<?= $intent->client_secret ?>">Submit Payment</button>
+            </div>
+      
         </div>
+        <script>
+            var stripe = Stripe('pk_test_5HZtzmhWIGEbSO0opIYTYWhQ00boEZTdd8');
+
+            var elements = stripe.elements();
+            var cardElement = elements.create('card');
+            cardElement.mount('#card-element');
+            var cardholderName = document.getElementById('cardholder-name');
+            var cardButton = document.getElementById('card-button');
+            var clientSecret = cardButton.dataset.secret;
+
+            cardButton.addEventListener('click', function(ev) {
+            stripe.handleCardPayment(
+                clientSecret, cardElement, {
+                payment_method_data: {
+                    billing_details: {name: cardholderName.value}
+                }
+                }
+            ).then(function(result) {
+                if (result.error) {
+                // Display error.message in your UI.
+                    alert('error');
+                } else {
+                // The payment has succeeded. Display a success message.
+                    alert('succes');
+                    window.location.replace("/");
+                }
+            });
+            });
+        </script>
     </body>
 </html>
