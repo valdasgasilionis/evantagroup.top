@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Rental;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {   
-    return view('welcome');
+    return view('home');
 });
 
 Route::post('/charge', function (Request $request) {
@@ -28,6 +29,32 @@ Route::post('/charge', function (Request $request) {
     ]);
     return view('checkout', [
         'intent' => $intent
+    ]);
+});
+
+Route::get('/rentals', function() {
+    $rentals = Rental::all();
+    return view('index', [
+        'rentals'=> $rentals
+    ]);
+});
+
+Route::post('/rentals', function(Request $request) {
+    $rental = new Rental;
+    $rental->start = $request->start;
+    $rental->end = $request->end;
+    $rental->price = $request->price;
+
+    $rental->save();
+
+    return back();
+});
+
+Route::get('/rentals/{id}/edit', function($id) {
+    $item = Rental::find($id);
+    /* return $item; */
+    return view('edit', [
+        'item' =>  $item
     ]);
 });
 

@@ -159,7 +159,7 @@
         </div>  
         
         <script>
-            var stripe = Stripe('pk_test_5HZtzmhWIGEbSO0opIYTYWhQ00boEZTdd8');
+            var stripe = Stripe('{{config("services.stripe.key")}}');
 
             var elements = stripe.elements();
 
@@ -189,7 +189,7 @@
                 } else {
                 // The payment has succeeded. Display a success message.
                     alert('succes');
-                    window.location.replace("/");
+                    window.location.replace("/rentals");
                 }
             });
             });
