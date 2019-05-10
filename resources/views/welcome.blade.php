@@ -93,14 +93,20 @@
                     @endauth
                 </div>
             @endif
-        <div class="container">
+        <div class="container col-6">
+              
             <form action="/charge" method="post">                
                 @csrf
-                    <div class="form-group">
-                        <label for="amount">price</label>
-                        <input type="number" class="form-control" name="price" placeholder="eur">
-                    </div>
-                <input type="submit" class="form-control" value="submit"> 
+                    <div class="form-group row">
+                        <label for="price" class="col-sm-2 col-form-label"> Enter price</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" name="eur" placeholder="eur">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" name="ct" placeholder="ct">
+                            </div>
+                        <button type="submit" class="btn btn-primary col-sm-4">Submit</button>
+                    </div>                 
             </form>
         </div>
     </body>
