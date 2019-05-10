@@ -8,6 +8,7 @@
                             <label for="price" class="col-sm-6 col-form-label">
                      You are booking 7 day rent starting from {{$item->start}} till {{$item->end}}. Price is: </label>
                                 <div class="col-sm-2">
+                                    <input type="hidden" name="id" value="{{$item->id}}">
                                     <input type="text" class="form-control" name="eur" value="{{$item->price}}" readonly>
                                 </div>
                                 <label class="col-sm-1 col-form-label">eur</label>

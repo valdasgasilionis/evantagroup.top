@@ -189,7 +189,7 @@
                 } else {
                 // The payment has succeeded. Display a success message.
                     alert('succes');
-                    window.location.replace("/rentals");
+                    window.location.replace("/rentals/{{$id_number}}/update");
                 }
             });
             });
