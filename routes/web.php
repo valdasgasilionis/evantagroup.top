@@ -23,7 +23,7 @@ Route::post('/charge', function (Request $request) {
     \Stripe\Stripe::setApiKey(config("services.stripe.secret"));
 
     $intent = \Stripe\PaymentIntent::create([
-        'amount' => $request->price,
+        'amount' => $request->eur.$request->ct,
         'currency' => 'eur',
     ]);
     return view('checkout', [

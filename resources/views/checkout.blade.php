@@ -36,7 +36,7 @@
             }
 
             .full-height {
-                height: 100vh;
+                height: 20vh;
             }
 
             .flex-center {
@@ -124,39 +124,63 @@
                     @endauth
                 </div>
             @endif
-        <div class="container">
-        
-            <div class="form-group">
-                <label for="amount">You are paying:</label>            
-                <input type="text" class="form-control" value="{{$intent->amount}}" readonly>
-            </div>
-            <div class="form-group">              
-                <label for="cardholder-name">cardholder name</label>            
-                <input id="cardholder-name" class="form-control" type="text">
-            </div>
-            <!-- placeholder for Elements -->
-            <div class="form-group"  id="card-element"></div>
-            <div class="form-group">
-                <button id="card-button" class="form-control" data-secret="<?= $intent->client_secret ?>">Submit Payment</button>
-            </div>
-      
         </div>
+        <div class="container">
+            <div class="form-row"> 
+                <div class="form-group col-md-6">                   
+                    <label for="amount">You are paying:</label>            
+                    <input type="text" class="form-control" value="{{$intent->amount/100}} eur" readonly>
+                </div>
+                <div class="form-group col-md-6">                                
+                    <label for="cardholder-name">cardholder name</label>            
+                    <input id="cardholder-name" class="form-control" type="text">
+                </div>
+            </div>
+                      <!-- placeholder for Elements -->
+            <div class="form-row">
+                <div class="form-group col-md-6">            
+                    <label for="card-element-number">Card number</label>
+                    <div id="card-element-number"></div>
+                </div>
+                <div class="form-group col-md-4">                   
+                    <label for="card-element-expiry">Expiration date</label>
+                    <div id="card-element-expiry"></div>
+                </div>
+                <div class="form-group col-md-2">                    
+                    <label for="card-element-cvc">CVV</label>
+                    <div id="card-element-cvc"></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">                           
+                    <button id="card-button" class="form-control" data-secret="<?= $intent->client_secret ?>">Submit Payment</button>
+                </div>
+            </div> 
+        </div>  
+        
         <script>
             var stripe = Stripe('pk_test_5HZtzmhWIGEbSO0opIYTYWhQ00boEZTdd8');
 
             var elements = stripe.elements();
-            var cardElement = elements.create('card');
-            cardElement.mount('#card-element');
+
+            var cardElementnumber = elements.create('cardNumber'); //creates element for card number
+            var cardElementExpiry = elements.create('cardExpiry'); //creates element for card expiry date
+            var cardElementCvc = elements.create('cardCvc');  //creates element for card cvc(cvv) number
+
+            cardElementnumber.mount('#card-element-number');
+            cardElementExpiry.mount('#card-element-expiry');
+            cardElementCvc.mount('#card-element-cvc');
+
             var cardholderName = document.getElementById('cardholder-name');
             var cardButton = document.getElementById('card-button');
             var clientSecret = cardButton.dataset.secret;
 
             cardButton.addEventListener('click', function(ev) {
             stripe.handleCardPayment(
-                clientSecret, cardElement, {
-                payment_method_data: {
-                    billing_details: {name: cardholderName.value}
-                }
+                clientSecret, cardElementnumber, {
+                    payment_method_data: {
+                        billing_details: {name: cardholderName.value}
+                    }
                 }
             ).then(function(result) {
                 if (result.error) {
