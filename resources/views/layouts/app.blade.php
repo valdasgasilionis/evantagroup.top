@@ -21,7 +21,10 @@
        <!-- Styles -->
        <style>
             html, body {
-                background-color: #fff;
+                background-color:darkturquoise;
+                background-image:linear-gradient(to bottom, #fff, darkturquoise);
+                background-size: cover;
+                background-repeat: no-repeat;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
