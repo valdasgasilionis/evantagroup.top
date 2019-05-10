@@ -27,8 +27,11 @@ Route::post('/charge', function (Request $request) {
         'amount' => $request->eur.$request->ct,
         'currency' => 'eur',
     ]);
+    $id_number = $request->id;
+
     return view('checkout', [
-        'intent' => $intent
+        'intent' => $intent,
+        'id_number' => $id_number
     ]);
 });
 
@@ -52,12 +55,26 @@ Route::post('/rentals', function(Request $request) {
 
 Route::get('/rentals/{id}/edit', function($id) {
     $item = Rental::find($id);
-    /* return $item; */
+    $number = $id;
     return view('edit', [
         'item' =>  $item
     ]);
 });
+//UPDATE rental status to 'booked'
+Route::get('/rentals/{id}/update', function($id) {
+    $rent = Rental::find($id);     
+    $rent->reserved = 1;   
+    $rent->save();
 
+    return redirect('/rentals');
+});
+Route::post('/rentals/{id}/finalize', function($id) {
+    $case = Rental::find($id);
+    $case->paid = 1;
+    $case->save();
+
+    return back();
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

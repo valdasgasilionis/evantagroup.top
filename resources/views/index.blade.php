@@ -32,10 +32,12 @@
                                     </td>
                                         @if (auth()->check())
                                     <td>
-                                        <form action="/rentals/{{$rent->id}}" method="POST">
-                                            @csrf
-                                            <input type="checkbox" {{$rent->paid ? "checked" : ""}} onChange='this.form.submit()'>
-                                        </form>
+                                            @if ($rent->reserved === 1)
+                                                <form action="/rentals/{{$rent->id}}/finalize" method="POST">
+                                                    @csrf
+                                                <input type="checkbox" {{$rent->paid ? "checked" : ""}} onChange='this.form.submit()'>
+                                                </form>
+                                            @endif                                        
                                     </td>
                                         @endif
                                 </tr>
