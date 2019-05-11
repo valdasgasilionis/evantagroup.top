@@ -40,10 +40,10 @@
                             <img src="/css/Palanga.jpg" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item" data-interval="3000">
-                            <img src="/css/Palanga1.jpg" class="d-block w-100" alt="...">
+                            <img src="/css/palanga1.jpg" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item" data-interval="3000">
-                            <img src="/css/Palanga2.jpg" class="d-block w-100" alt="...">
+                            <img src="/css/palanga2.jpg" class="d-block w-100" alt="...">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
