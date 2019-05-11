@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-   
-        <div class="col-md-12">
-            <div><h1 class="text-center">Sveiki! - Tai jūsų poilsis VANAGUPĖJE!</h1></div>
+    <div class="container align-content-center">   
+        <div class="container">
+            <div class="turinys"><h2>Sveiki! - Tai jūsų poilsis VANAGUPĖJE!</h2></div>
             <div class="card-body">
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -13,7 +12,7 @@
                 @endif
             </div>
             <div class="containter">
-                <nav class="navbar navbar-expand-lg navbar-light">
+                <nav class="navbar navbar-expand-lg navbar-light turinys">
                     <a class="navbar-brand" href="/rentals">REZERVACIJA</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -34,6 +33,30 @@
                 </nav>              
             </div>
         </div>
-    
-</div>
+        <div class="col-md-9 turinys">
+                <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-interval="3000">
+                            <img src="/css/Palanga.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="/css/Palanga1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="/css/Palanga2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+                        {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
+                        <span style="font-size:32px; color:greenyellow" aria-hidden="true">←</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+                        {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
+                        <span style="font-size:32px; color:greenyellow" aria-hidden="true">→</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+        </div>    
+    </div>
 @endsection
