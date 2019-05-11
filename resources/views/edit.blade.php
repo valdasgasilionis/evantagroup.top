@@ -5,17 +5,20 @@
                 <form action="/charge" method="post">                
                     @csrf
                         <div class="form-group row">
-                            <label for="price" class="col-sm-6 col-form-label">
-                     You are booking 7 day rent starting from {{$item->start}} till {{$item->end}}. Price is: </label>
+                            <label for="price" class="col-sm-9 col-form-label">
+                     You are booking 7 day rent starting from {{$item->start}} till {{$item->end}}. Price is: 
+                            </label>
+                        </div>
+                        <div class="form-group row">
                                 <div class="col-sm-2">
                                     <input type="hidden" name="id" value="{{$item->id}}">
                                     <input type="text" class="form-control" name="eur" value="{{$item->price}}" readonly>
                                 </div>
-                                <label class="col-sm-1 col-form-label">eur</label>
-                                <div class="col-sm-1">
+                                <label class="col-sm-2 col-form-label">eur</label>
+                                <div class="col-sm-2">
                                     <input type="text" class="form-control" name="ct" value="00"  readonly>                                 
                                 </div>
-                                    <label class="col-sm-1 col-form-label">ct</label>
+                                    <label class="col-sm-2 col-form-label">ct</label>
                             <button type="submit" class="btn btn-primary col-sm-1">Pay</button>
                         </div>                 
                 </form>

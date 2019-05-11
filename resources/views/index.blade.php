@@ -6,7 +6,9 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                    @if (auth()->check())
+                                <th scope="col">ID</th>    
+                                    @endif                                
                                 <th scope="col">start</th>
                                 <th scope="col">End</th>
                                 <th scope="col">Price</th>
@@ -18,11 +20,13 @@
                         </thead>
                         <tbody>                        
                             @foreach ($rentals as $rent)
-                                <tr id="{{$rent->paid ? "rent-paid" : ""}}">
-                                    <th scope="row">{{$rent->id}}</th>
+                                <tr>
+                                        @if (auth()->check())
+                                    <th scope="row">{{$rent->id}}</th>    
+                                        @endif                                    
                                     <td>{{$rent->start}}</td>
                                     <td>{{$rent->end}}</td>
-                                    <td>{{$rent->price}}</td>
+                                    <td>{{$rent->price}}.00 eur</td>
                                     <td>
                                         @if ($rent->reserved === 0)
                                             <a href="rentals/{{$rent->id}}/edit">Book it</a>

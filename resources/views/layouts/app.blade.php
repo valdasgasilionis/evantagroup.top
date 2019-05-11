@@ -21,8 +21,8 @@
        <!-- Styles -->
        <style>
             html, body {
-                background-color:darkturquoise;
-                background-image:linear-gradient(to bottom, #fff, darkturquoise);
+                background-color:#fff;
+                background-image:linear-gradient(to bottom, #E8F3E8, #305A30);
                 background-size: cover;
                 background-repeat: no-repeat;
                 color: #636b6f;
@@ -72,7 +72,12 @@
 
             .m-b-md {
                 margin-bottom: 30px;
-            }           
+            }  
+            .turinys {
+                width:75%;
+                margin:auto;
+                padding: 10px 0;
+            }         
         </style>
 </head>
 <body>
@@ -128,7 +133,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="turinys">
             @yield('content')
         </main>
     </div>
