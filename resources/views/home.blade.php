@@ -1,6 +1,46 @@
 @extends('layouts.app')
 
-@section('content')
+@section('content') 
+<!-- Load Stripe.js on your website. -->
+<script src="https://js.stripe.com/v3"></script>
+
+<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+<button
+  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+  id="checkout-button-sku_F0Qemjd6kSliq9"
+  role="link"
+>
+  Mokėti 500 eur per Stripe Checkout
+</button>
+
+<div id="error-message"></div>
+
+<script>
+  var stripe = Stripe('pk_test_5HZtzmhWIGEbSO0opIYTYWhQ00boEZTdd8');
+
+  var checkoutButton = document.getElementById('checkout-button-sku_F0Qemjd6kSliq9');
+  checkoutButton.addEventListener('click', function () {
+    // When the customer clicks on the button, redirect
+    // them to Checkout.
+    stripe.redirectToCheckout({
+      items: [{sku: 'sku_F0Qemjd6kSliq9', quantity: 1}],
+
+      // Note that it is not guaranteed your customers will be redirected to this
+      // URL *100%* of the time, it's possible that they could e.g. close the
+      // tab between form submission and the redirect.
+      successUrl: 'https://evantagroup.top',
+      cancelUrl: 'https://evantagroup.top',
+    })
+    .then(function (result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
+</script>
     <div class="container align-content-center">   
         <div class="container">
             <div class="turinys"><h2>Sveiki! - Tai jūsų poilsis VANAGUPĖJE!</h2></div>
@@ -59,4 +99,5 @@
                 </div>
         </div>    
     </div>
+   
 @endsection
