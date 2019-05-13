@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Rental;
+use App\Notifications\Webhook;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,9 @@ use App\Rental;
 |
 */
 
-Route::get('/', function () {   
+Route::get('/', function () { 
+    $user = App\User::find(1);
+    $user->notify(new Webhook()); 
     return view('home');
 });
 
@@ -85,7 +88,9 @@ Route::post('/webhook', function(Request $request) {
     $event_json = json_decode($request);
 
     // Do something with $event_json
-    Notification::send($users, new Webhook());
+   
+    $user = App\User::find(1);
+    $user->notify(new Webhook());
     // Return a response to acknowledge receipt of the event
    /*  http_response_code(200); */ // PHP 5.4 or greater
     http_response_code(200);
