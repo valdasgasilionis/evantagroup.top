@@ -16,9 +16,7 @@ use App\Notifications\Webhook;
 */
 
 Route::get('/', function () { 
-  /*   $user = App\User::find(1);
-    $foo = 'belekas mano tekstas...';
-    $user->notify(new Webhook($foo));  */
+
     return view('home');
 });
 
