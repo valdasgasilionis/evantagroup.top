@@ -85,8 +85,7 @@ Route::post('/webhook', function(Request $request) {
     $event_json = json_decode($request);
 
     // Do something with $event_json
-    $admin = App\User::find('1');
-    $admin->notify(new Webhook());
+    Notification::send($users, new Webhook());
     // Return a response to acknowledge receipt of the event
    /*  http_response_code(200); */ // PHP 5.4 or greater
     http_response_code(200);
