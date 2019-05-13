@@ -11,14 +11,16 @@ class Webhook extends Notification
 {
     use Queueable;
 
+    protected $event_json;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(array $event_json)
     {
-        //
+        $this->event_json = $event_json;
     }
 
     /**
@@ -55,7 +57,7 @@ class Webhook extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'data' => $this->event_json
         ];
     }
 }
