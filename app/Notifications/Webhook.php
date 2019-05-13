@@ -18,7 +18,7 @@ class Webhook extends Notification
      *
      * @return void
      */
-    public function __construct(array $event_json)
+    public function __construct($event_json)
     {
         $this->event_json = $event_json;
     }
