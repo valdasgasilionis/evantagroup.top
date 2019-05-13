@@ -85,11 +85,11 @@ Route::post('/webhook', function(Request $input) {
     $event_json = json_decode($input);
 
     // Do something with $event_json
-   /*  return view('/webhook', [
-        'evant_json' => $event_json
-    ]) */
+    return view('/webhook', [
+        'event_json' => $event_json
+    ]);
     // Return a response to acknowledge receipt of the event
-    http_response_code(200); // PHP 5.4 or greater
+   /*  http_response_code(200); */ // PHP 5.4 or greater
     });
 
 Auth::routes();
