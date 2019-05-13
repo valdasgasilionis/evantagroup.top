@@ -79,16 +79,19 @@ Route::post('/rentals/{id}/finalize', function($id) {
     return back();
 });
 //webhook testing STRIPE
-Route::post('/webhook', function(Request $request) {
+Route::post('/webhook', function(Request $input) {
     // Retrieve the request's body and parse it as JSON:
     $input = @file_get_contents('php://input');
     $event_json = json_decode($input);
 
     // Do something with $event_json
-    /* return $event_json; */
+   /*  return view('/webhook', [
+        'evant_json' => $event_json
+    ]) */
     // Return a response to acknowledge receipt of the event
-    http_response_code(200); // PHP 5.4 or greater
+     return http_response_code(200); // PHP 5.4 or greater
     });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
