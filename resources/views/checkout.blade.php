@@ -175,11 +175,8 @@
             var cardButton = document.getElementById('card-button');
             var clientSecret = cardButton.dataset.secret;
 
-            var reserved = '{{$request->reserved}}';
-
             cardButton.addEventListener('click', function(ev) {
-                if (reserved = 0) {
-                     stripe.handleCardPayment(
+                    stripe.handleCardPayment(
                         clientSecret, cardElementnumber, {
                             payment_method_data: {
                                 billing_details: {name: cardholderName.value}
@@ -195,11 +192,7 @@
                             
                             window.location.replace("/rentals");
                         }
-                    });
-                } else {
-                    window.location.replace("/booked");
-                }
-           
+                    });                          
             });
         </script>
     </body>
