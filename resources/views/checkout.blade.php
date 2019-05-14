@@ -176,23 +176,28 @@
             var clientSecret = cardButton.dataset.secret;
 
             cardButton.addEventListener('click', function(ev) {
-            stripe.handleCardPayment(
-                clientSecret, cardElementnumber, {
-                    payment_method_data: {
-                        billing_details: {name: cardholderName.value}
-                    }
-                }
-            ).then(function(result) {
-                if (result.error) {
-                // Display error.message in your UI.
-                    alert('error');
+                if ($request->reserved = 0) {
+                     stripe.handleCardPayment(
+                        clientSecret, cardElementnumber, {
+                            payment_method_data: {
+                                billing_details: {name: cardholderName.value}
+                            }
+                        }
+                    ).then(function(result) {
+                        if (result.error) {
+                        // Display error.message in your UI.
+                            alert('error');
+                        } else {
+                        // The payment has succeeded. Display a success message.
+                            alert('succes');
+                            /* window.location.replace("/rentals/{{$id_number}}/update"); */
+                            window.location.replace("/rentals");
+                        }
+                    });
                 } else {
-                // The payment has succeeded. Display a success message.
-                    alert('succes');
-                    /* window.location.replace("/rentals/{{$id_number}}/update"); */
-                    window.location.replace("/rentals");
+                    window.location.replace("/booked");
                 }
-            });
+           
             });
         </script>
     </body>
