@@ -86,11 +86,12 @@ Route::post('/webhook', function(Request $request) {
     // Retrieve the request's body and parse it as JSON:
     $request = @file_get_contents('php://input');
     $event_json = json_decode($request);
+    $id_number = $event_json['metadata.rent_id'];
 
     // Do something with $event_json
    
     $user = App\User::find(1);
-    $user->notify(new Webhook($event_json));
+    $user->notify(new Webhook($id_number));
     // Return a response to acknowledge receipt of the event
    /*  http_response_code(200); */ // PHP 5.4 or greater
     http_response_code(200);
