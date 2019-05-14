@@ -176,7 +176,7 @@
             var clientSecret = cardButton.dataset.secret;
 
             cardButton.addEventListener('click', function(ev) {
-                if ('{{$request->reserved}}' = 0) {
+                if ({{$request->reserved}} = 0) {
                      stripe.handleCardPayment(
                         clientSecret, cardElementnumber, {
                             payment_method_data: {
