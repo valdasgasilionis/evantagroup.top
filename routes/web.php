@@ -84,7 +84,7 @@ Route::post('/webhook', function(Request $request) {
     // Retrieve the request's body and parse it as JSON:
     $request = @file_get_contents('php://input');
     $event_json = json_decode($request, true);
-    $id_number = $event_json["id"];
+    $id_number = $event_json["data"]["object"]["metadata"]["rent_id"];
    
 
     // Do something with $event_json
