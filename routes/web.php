@@ -31,6 +31,7 @@ Route::post('/charge', function (Request $request) {
     $intent = \Stripe\PaymentIntent::create([
         'amount' => $request->eur.$request->ct,
         'currency' => 'eur',
+        'metadata' => ['rent_id' => $request->id]
     ]);
     $id_number = $request->id;
 
