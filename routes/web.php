@@ -90,7 +90,7 @@ Route::post('/webhook', function(Request $request) {
     // Do something with $event_json
     $rental = Rental::find($id_number);
     $rental->notes = $webhook_id;
-    $rentl->save(); 
+    $rental->save(); 
 
    
     $user = App\User::find(1);
