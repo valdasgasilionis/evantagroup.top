@@ -84,10 +84,14 @@ Route::post('/webhook', function(Request $request) {
     // Retrieve the request's body and parse it as JSON:
     $request = @file_get_contents('php://input');
     $event_json = json_decode($request, true);
-    $id_number = $event_json["data"]["object"]["metadata"]["rent_id"];
-   
+    $id_number = $event_json["data"]["object"]["metadata"]["rent_id"]; // this is how to access rent id number
+    $webhook_id = $event_json["id"];
 
     // Do something with $event_json
+    $rental = Rental::find($id_number);
+    $rental->notes = $webhook_id;
+    $rentl->save(); 
+
    
     $user = App\User::find(1);
     $user->notify(new Webhook($id_number));
