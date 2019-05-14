@@ -84,7 +84,7 @@ Route::post('/webhook', function(Request $request) {
     // Retrieve the request's body and parse it as JSON:
     $request = @file_get_contents('php://input');
     $event_json = json_decode($request, true);
-    $id_number = $event_json["metadata"]["rent_id"];
+    $id_number = $event_json["id"];
    
 
     // Do something with $event_json
@@ -100,6 +100,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function() {   
+Route::get('/test', function() { 
     return view('test');
 });
