@@ -65,13 +65,13 @@ Route::get('/rentals/{id}/edit', function($id) {
     ]);
 });
 //UPDATE rental status to 'booked'
-Route::get('/rentals/{id}/update', function($id) {
+/* Route::get('/rentals/{id}/update', function($id) {
     $rent = Rental::find($id);     
     $rent->reserved = 1;   
     $rent->save();
 
     return redirect('/rentals');
-});
+}); */
 Route::post('/rentals/{id}/finalize', function($id) {
     $case = Rental::find($id);
     $case->paid = 1;
@@ -88,11 +88,15 @@ Route::post('/webhook', function(Request $request) {
     $webhook_id = $event_json["id"];
 
     // Do something with $event_json
+        //find rental id number from webhook data
+        //insert webhook id into notes collumn;
+        //update status to reserved ->yes;
     $rental = Rental::find($id_number);
     $rental->notes = $webhook_id;
+    $rental->reserved = 1;
     $rental->save(); 
 
-   
+        //create notification -> now it is stored in notifications table only;
     $user = App\User::find(1);
     $user->notify(new Webhook($id_number));
     // Return a response to acknowledge receipt of the event
