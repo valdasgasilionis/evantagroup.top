@@ -197,9 +197,9 @@
               var st = param.split(":");
               var xx = st[1];
               var param = Number(xx);
-              
-               alert(typeof param);
-               if (st === 0) {
+
+               alert(typeof param, param);
+               if (st = 0) {
                      stripe.handleCardPayment(
                         clientSecret, cardElementnumber, {
                             payment_method_data: {
