@@ -199,7 +199,7 @@
               var param = Number(xx);
 
                alert(param);
-               if (param = 0) {
+               if (param === 0) {
                      stripe.handleCardPayment(
                         clientSecret, cardElementnumber, {
                             payment_method_data: {
