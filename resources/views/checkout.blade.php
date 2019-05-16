@@ -214,13 +214,6 @@
                         // The payment has succeeded. Display a success message.
         //let's try to send another axaj to update rental
         
-                $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });    
-
-            var id = $("#hidden").val();
         $.ajax({
            type:'POST',
            url:'reserved',
@@ -229,7 +222,8 @@
            success: function(msg){
                
                             alert(msg);
-                            
+           }
+        });   
                             window.location.replace("/rentals");
                         }
                     });
