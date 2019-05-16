@@ -196,7 +196,7 @@
               var param = arr[7];
               var st = param.split(":");
                /* alert(st[1]); */
-               if (st = 0) {
+               if (st === 0) {
                      stripe.handleCardPayment(
                         clientSecret, cardElementnumber, {
                             payment_method_data: {
