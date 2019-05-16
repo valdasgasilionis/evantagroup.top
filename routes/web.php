@@ -35,7 +35,7 @@ Route::post('/charge', function (Request $request) {
 
     return view('checkout', [
         'intent' => $intent,
-        'request' => $request
+        'id' => $request->id
     ]);
 });
 
@@ -113,4 +113,14 @@ Route::get('/test', function() {
 });
 Route::get('/booked', function() {
     return view('booked');
+});
+// AJAX testing
+/* Route::get('ajax', function() {
+   
+    return view('ajax'); 
+}); */
+Route::post('ajax', function(Request $request) {
+    $rental = Rental::find($request);      
+    $var = json_encode($rental);
+    return response()->json($var);
 });
