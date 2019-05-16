@@ -195,7 +195,9 @@
                var arr = rent.split(",");
               var param = arr[7];
               var st = param.split(":");
-              var param = number(st[1]);
+              var xx = st[1];
+              var param = Number(xx);
+              
                alert(typeof param);
                if (st === 0) {
                      stripe.handleCardPayment(
