@@ -31,11 +31,11 @@ Route::post('/charge', function (Request $request) {
         'currency' => 'eur',
         'metadata' => ['rent_id' => $request->id]
     ]);
-    $id_number = $request->id;
+    /* $id_number = $request->id; */
 
     return view('checkout', [
         'intent' => $intent,
-        'id_number' => $id_number
+        'id' => $request->id
     ]);
 });
 
@@ -111,6 +111,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', function() { 
     return view('test');
 });
-Route::get('/non', function() {
-    return back();
+
+Route::get('/booked', function() {
+    return view('booked');
+});
+// AJAX testing
+/* Route::get('ajax', function() {
+   
+    return view('ajax'); 
+}); */
+Route::post('ajax', function(Request $request) {
+    $rental = Rental::find($request);      
+    $var = json_encode($rental);
+    return response()->json($var);
 });

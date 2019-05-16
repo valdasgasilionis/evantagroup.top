@@ -5,12 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}">        
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -135,6 +136,7 @@
                     <label for="cardholder-name">cardholder name</label>            
                     <input id="cardholder-name" class="form-control" type="text">
                 </div>
+                    <input type="hidden" id="hidden" value="{{$id}}">
             </div>
                       <!-- placeholder for Elements -->
             <div class="form-row">
@@ -176,23 +178,49 @@
             var clientSecret = cardButton.dataset.secret;
 
             cardButton.addEventListener('click', function(ev) {
-            stripe.handleCardPayment(
-                clientSecret, cardElementnumber, {
-                    payment_method_data: {
-                        billing_details: {name: cardholderName.value}
-                    }
+    //make AJAX jquerry call to database to check reserved status
+                $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-            ).then(function(result) {
-                if (result.error) {
-                // Display error.message in your UI.
-                    alert('error');
-                } else {
-                // The payment has succeeded. Display a success message.
-                    alert('succes');
-                    /* window.location.replace("/rentals/{{$id_number}}/update"); */
-                    window.location.replace("/rentals");
-                }
-            });
+            });    
+
+            var id = $("#hidden").val();
+        $.ajax({
+           type:'POST',
+           url:'ajax',
+           data:{id:id},
+           dataType: "json",
+           success: function(rent){
+               var arr = rent.split(",");
+              var param = arr[7];
+              var st = param.split(":");
+               /* alert(st[1]); */
+               if (st = 0) {
+                     stripe.handleCardPayment(
+                        clientSecret, cardElementnumber, {
+                            payment_method_data: {
+                                billing_details: {name: cardholderName.value}
+                            }
+                        }
+                    ).then(function(result) {
+                        if (result.error) {
+                        // Display error.message in your UI.
+                            alert('error');
+                        } else {
+                        // The payment has succeeded. Display a success message.
+                            alert('succes');
+                            
+                            window.location.replace("/rentals");
+                        }
+                    });
+               } else {
+                window.location.replace("/booked");
+               }
+           }
+        });
+	});
+                                            
             });
         </script>
     </body>
