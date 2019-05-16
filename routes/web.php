@@ -93,14 +93,14 @@ Route::post('/webhook', function(Request $request) {
         //update status to reserved ->yes;
     $rental = Rental::find($id_number);
     $rental->notes = $webhook_id;
-   /*  $rental->reserved = 1; */
+    $rental->reserved = 1;
     $rental->save(); 
 
         //create notification -> now it is stored in notifications table only;
     $user = App\User::find(1);
     $user->notify(new Webhook($id_number));
     // Return a response to acknowledge receipt of the event
-   /*  http_response_code(200); */ // PHP 5.4 or greater
+    // PHP 5.4 or greater
     http_response_code(200);
     });
 
@@ -125,13 +125,4 @@ Route::post('ajax', function(Request $request) {
    
     //send ajax response and process payment
     return response()->json($var);    
-});
-
-Route::post('reserved', function(Request $request) {
-    $rental = Rental::find($request);
-    $rental->reserved = 1;
-    $rental->save();
-   /*  $msg_raw = 'very well - ok';
-    $msg = json_encode($msg_raw);
-    return response()->json($msg); */
 });
