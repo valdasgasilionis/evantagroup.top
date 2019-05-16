@@ -195,7 +195,8 @@
                var arr = rent.split(",");
               var param = arr[7];
               var st = param.split(":");
-               alert(typeof st[1]);
+              var param = number(st[1]);
+               alert(typeof param);
                if (st === 0) {
                      stripe.handleCardPayment(
                         clientSecret, cardElementnumber, {
