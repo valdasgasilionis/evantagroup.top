@@ -131,7 +131,7 @@ Route::post('reserved', function(Request $request) {
     $rental = Rental::find($request);
     $rental->reserved = 1;
     $rental->save();
-    $msg_raw = 'very well - ok';
+   /*  $msg_raw = 'very well - ok';
     $msg = json_encode($msg_raw);
-    return response()->json($msg);
+    return response()->json($msg); */
 });

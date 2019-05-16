@@ -225,9 +225,9 @@
            url:'reserved',
            data:{id_number:id_number},
            dataType: "json",
-           success: function(msg){
+           success: function(){
                
-                            alert(msg);
+                            alert('success');
                             window.location.replace("/rentals");
            }
         });                               
