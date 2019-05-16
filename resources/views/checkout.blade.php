@@ -213,19 +213,25 @@
                         } else {
                         // The payment has succeeded. Display a success message.
         //let's try to send another axaj to update rental
-        
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });    
+
+            var id_number = $("#hidden").val();
         $.ajax({
            type:'POST',
            url:'reserved',
-           data:{id:id},
+           data:{id_number:id_number},
            dataType: "json",
            success: function(msg){
                
                             alert(msg);
-           }
-        });   
                             window.location.replace("/rentals");
-                        }
+           }
+        });                               
+                }
                     });
                } else {
                 window.location.replace("/booked");
