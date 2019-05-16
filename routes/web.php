@@ -123,5 +123,9 @@ Route::get('/booked', function() {
 Route::post('ajax', function(Request $request) {
     $rental = Rental::find($request);      
     $var = json_encode($rental);
+    //set reserved->true;
+    $rental->reserved = 1;
+    $rental->save();
+    //send ajax response and process payment
     return response()->json($var);
 });
