@@ -127,7 +127,7 @@ Route::post('ajax', function(Request $request) {
     return response()->json($var);    
 });
 
-Route::post('intent', function(Request $request) {
+Route::post('/intent', function(Request $request) {
     $request = @file_get_contents('php://input');
     $event_json = json_decode($request, true);
   /*   $id_number = $event_json["data"]["object"]["metadata"]["rent_id"]; // this is how to access rent id number
