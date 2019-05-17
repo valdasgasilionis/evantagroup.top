@@ -198,7 +198,7 @@
               var xx = st[1];
               var param = xx;
 
-               alert(typeof param);
+               alert(param);
                if (param === 'null') {
                      stripe.handleCardPayment(
                         clientSecret, cardElementnumber, {
