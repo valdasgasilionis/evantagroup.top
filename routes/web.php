@@ -126,3 +126,15 @@ Route::post('ajax', function(Request $request) {
     //send ajax response and process payment
     return response()->json($var);    
 });
+
+Route::post('intent', function(Request $request) {
+    $request = @file_get_contents('php://input');
+    $event_json = json_decode($request, true);
+  /*   $id_number = $event_json["data"]["object"]["metadata"]["rent_id"]; // this is how to access rent id number
+    $webhook_id = $event_json["id"]; */
+
+// Do something with $event_json
+
+// Return a response to acknowledge receipt of the event
+http_response_code(200); // PHP 5.4 or greater
+});
