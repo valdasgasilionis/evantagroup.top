@@ -132,7 +132,8 @@ Route::post('/intent', function(Request $request) {
     $event_json = json_decode($request, true);
     $id_number = $event_json["data"]["object"]["metadata"]["rent_id"]; // this is how to access rent id number
     $webhook_id = $event_json["id"];
-//update reserved status to lock for payment processing 
+//update reserved status to lock for payment processing
+    $rental = Rental::find($id_number);
     $rental->reserved = 1;
     $rental->save();
 
