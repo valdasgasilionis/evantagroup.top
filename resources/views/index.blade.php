@@ -28,10 +28,12 @@
                                     <td>{{$rent->end}}</td>
                                     <td>{{$rent->price}}.00 eur</td>
                                     <td>
-                                        @if ($rent->reserved === 0)
+                                        @if ($rent->notes = null && $rent->reserved = null)
                                             <a href="rentals/{{$rent->id}}/edit">Book it</a>
-                                        @else
-                                            {{$rent->reserved ? "no" : "yes"}}
+                                        @elseif ($rent->notes = null && $rent->reserved = 1)
+                                            <a href="rentals/{{$rent->id}}/edit" style="color:yellow">Not paid yet</a>
+                                        @elseif($rent->notes != null) 
+                                            NOT AVAILABLE(paid)
                                         @endif
                                     </td>
                                         @if (auth()->check())
