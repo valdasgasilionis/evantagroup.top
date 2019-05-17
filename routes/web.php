@@ -93,7 +93,7 @@ Route::post('/webhook', function(Request $request) {
         //update status to reserved ->yes;
     $rental = Rental::find($id_number);
     $rental->notes = $webhook_id;
-    /* $rental->reserved = 1; */
+    $rental->reserved = 1;
     $rental->save(); 
 
         //create notification -> now it is stored in notifications table only;
@@ -132,10 +132,6 @@ Route::post('/intent', function(Request $request) {
     $event_json = json_decode($request, true);
     $id_number = $event_json["data"]["object"]["metadata"]["rent_id"]; // this is how to access rent id number
     $webhook_id = $event_json["id"];
-//update reserved status to lock for payment processing
-    $rental = Rental::find($id_number);
-    /* $rental->reserved = 1; */
-    $rental->save();
 
 // Do something with $event_json
 
