@@ -196,7 +196,7 @@
               var param = arr[6];
               var st = param.split(":");
               var xx = st[1];
-              var param = boolean(xx);
+              var param = Number(xx);
 
                alert(param);
                if (param === 0) {
