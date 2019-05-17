@@ -192,13 +192,13 @@
            data:{id:id},
            dataType: "json",
            success: function(rent){
-              /*  var arr = rent.split(",");
-              var param = arr[7];
+               var arr = rent.split(",");
+              var param = arr[6];
               var st = param.split(":");
               var xx = st[1];
-              var param = Number(xx); */
+              var param = boolean(xx);
 
-               alert(rent);
+               alert(param);
                if (param === 0) {
                      stripe.handleCardPayment(
                         clientSecret, cardElementnumber, {
