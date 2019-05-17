@@ -134,7 +134,7 @@ Route::post('/intent', function(Request $request) {
     $webhook_id = $event_json["id"];
 //update reserved status to lock for payment processing
     $rental = Rental::find($id_number);
-    $rental->reserved = 1;
+    /* $rental->reserved = 1; */
     $rental->save();
 
 // Do something with $event_json
