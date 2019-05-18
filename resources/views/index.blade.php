@@ -30,13 +30,13 @@
                                     <td>
                                         @if (empty($rent->notes))
                                             @if ($rent->reserved === 0)
-                                                <a href="rentals/{{$rent->id}}/edit">Book it</a>
+                                                <a href="rentals/{{$rent->id}}/edit" class="text-primary font-weight-bold">Book it</a>
                                             @endif 
                                             @if ($rent->reserved === 1)
-                                                <a href="rentals/{{$rent->id}}/edit" style="color:yellow">Not paid yet</a>
+                                                <a href="rentals/{{$rent->id}}/edit" class="text-warning font-italic">Reserved</a>
                                             @endif                                           
                                         @elseif(!empty($rent->notes)) 
-                                            NOT AVAILABLE(paid)
+                                            <span><i>Not Available</i></span>
                                         @endif
                                     </td>
                                         @if (auth()->check())
