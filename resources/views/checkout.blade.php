@@ -169,7 +169,7 @@
             (function() {
                 setTimeout(function() {
                     window.location.replace('/expired/{{$id}}');
-                }, 15000);                
+                }, 30000);                
             })();
             var stripe = Stripe('{{config("services.stripe.key")}}');
 
