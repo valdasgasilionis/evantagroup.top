@@ -21,15 +21,17 @@
        <!-- Styles -->
        <style>
             html, body {
-                background-color:#fff;
-                background-image:linear-gradient(to bottom, #E8F3E8, #305A30);
-                background-size: contain;
-                background-repeat: no-repeat;
+                background-color: lightslategrey;               
                 color: #000;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+            }
+            main {
+                background-image:linear-gradient(to bottom, #E8F3E8, #305A30);
+                background-size: contain;
+                background-repeat: no-repeat;
             }
 
             .full-height {
