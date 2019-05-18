@@ -33,7 +33,7 @@
                                                 <a href="rentals/{{$rent->id}}/edit" class="text-primary font-weight-bold">Book it</a>
                                             @endif 
                                             @if ($rent->reserved === 1)
-                                                <a href="rentals/{{$rent->id}}/edit" class="text-warning font-italic">Reserved</a>
+                                                <span class="text-warning font-italic">Reserved</span>
                                             @endif                                           
                                         @elseif(!empty($rent->notes)) 
                                             <span><i>Not Available</i></span>
