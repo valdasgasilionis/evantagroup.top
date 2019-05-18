@@ -106,7 +106,7 @@ Route::post('/webhook', function(Request $request) {
         //update status to reserved ->yes;
     $rental = Rental::find($id_number);
     $rental->notes = $webhook_id;
-    /* $rental->reserved = 1; */
+    $rental->reserved = 1;
     $rental->save(); 
 
         //create notification -> now it is stored in notifications table only;
