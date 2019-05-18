@@ -215,7 +215,7 @@
               var xx = st[1];
               var param = xx;
 
-               alert(param);
+               /* alert(param); */
                if (param === 'null') {
                      stripe.handleCardPayment(
                         clientSecret, cardElementnumber, {
@@ -229,7 +229,7 @@
                             alert('error');
                         } else {
                         // The payment has succeeded. Display a success message.
-                        alert('success');
+                        /* alert('success'); */
                         window.location.replace("/rentals");        
                 }
                     });
