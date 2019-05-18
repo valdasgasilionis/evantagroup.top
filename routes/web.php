@@ -53,7 +53,7 @@ Route::get('/rentals', function() {
         'rentals'=> $rentals
     ]);
 });
-
+//create new rental instance
 Route::post('/rentals', function(Request $request) {
     $rental = new Rental;
     $rental->start = $request->start;
@@ -62,9 +62,28 @@ Route::post('/rentals', function(Request $request) {
 
     $rental->save();
 
-    return back();
+    return redirect('/rentals');
 });
+//modify existing rental item
+Route::post('/modify', function(Request $request) {
+    $rent_id = $request->id;
+    $rental = Rental::find($rent_id);
+    $rental->start = $request->start;
+    $rental->end = $request->end;
+    $rental->price = $request->price;
 
+    $rental->update();
+
+    return redirect('/rentals');
+});
+//delete rental completely
+Route::post('delete', function(Request $request) {
+    $rent_id = $request->id;
+    $rental = Rental::find($rent_id);
+    $rental->delete();
+
+    return redirect('/rentals');
+});
 Route::get('/rentals/{id}/edit', function($id) {
     $item = Rental::find($id);
     if ($item->reserved === 0) {
@@ -77,14 +96,13 @@ Route::get('/rentals/{id}/edit', function($id) {
     
     
 });
-//UPDATE rental status to 'booked'
-/* Route::get('/rentals/{id}/update', function($id) {
-    $rent = Rental::find($id);     
-    $rent->reserved = 1;   
-    $rent->save();
-
-    return redirect('/rentals');
-}); */
+//modify rent item - only admin access
+Route::get('/rentals/{id}/modify', function($id) {
+    $rent = Rental::find($id);
+    return view('modify', [
+        'rent' => $rent
+    ]);
+});
 Route::post('/rentals/{id}/finalize', function($id) {
     $case = Rental::find($id);
     $case->paid = 1;
