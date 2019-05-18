@@ -22,21 +22,29 @@ Route::get('/', function () {
 
 
 Route::post('/charge', function (Request $request) {
-    // Set your secret key: remember to change this to your live secret key in production
-    // See your keys here: https://dashboard.stripe.com/account/apikeys
-    \Stripe\Stripe::setApiKey(config("services.stripe.secret"));
+//first let's check if reserved status is still - available
+    $rent_id_number = $request->id;
+    $rental = Rental::find($rent_id_number);
+    if ($rental->reserved === 0) {        
+        // Set your secret key: remember to change this to your live secret key in production
+        // See your keys here: https://dashboard.stripe.com/account/apikeys
+        \Stripe\Stripe::setApiKey(config("services.stripe.secret"));
 
-    $intent = \Stripe\PaymentIntent::create([
-        'amount' => $request->eur.$request->ct,
-        'currency' => 'eur',
-        'metadata' => ['rent_id' => $request->id]
-    ]);
-    /* $id_number = $request->id; */
+        $intent = \Stripe\PaymentIntent::create([
+            'amount' => $request->eur.$request->ct,
+            'currency' => 'eur',
+            'metadata' => ['rent_id' => $request->id]
+        ]);
+        /* $id_number = $request->id; */
 
-    return view('checkout', [
-        'intent' => $intent,
-        'id' => $request->id
+        return view('checkout', [
+            'intent' => $intent,
+            'id' => $request->id
     ]);
+    } else {
+        return redirect('/booked');
+    }
+    
 });
 
 Route::get('/rentals', function() {
