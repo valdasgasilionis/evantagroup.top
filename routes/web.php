@@ -158,7 +158,10 @@ http_response_code(200); // PHP 5.4 or greater
 //change status back to reserved->0 if redirected form expired session
 Route::get('/expired/{id}', function($id) {
     $rental = Rental::find($id);
-    $rental->reserved = 0;
-    $rental->save();
-    return redirect('/rentals');
+//check if no webhook was stored for the proccessed payment, only then restore reserved status to 0
+    if (empty($rental->notes)) {
+       $rental->reserved = 0;
+    $rental->save();    
+    }
+     return redirect('/rentals');
 });
