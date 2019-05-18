@@ -59,10 +59,15 @@ Route::post('/rentals', function(Request $request) {
 
 Route::get('/rentals/{id}/edit', function($id) {
     $item = Rental::find($id);
-    $number = $id;
-    return view('edit', [
+    if ($item->reserved === 0) {
+        return view('edit', [
         'item' =>  $item
     ]);
+    } else {
+        return redirect('/booked');
+    }
+    
+    
 });
 //UPDATE rental status to 'booked'
 /* Route::get('/rentals/{id}/update', function($id) {
