@@ -28,11 +28,14 @@
                                     <td>{{$rent->end}}</td>
                                     <td>{{$rent->price}}.00 eur</td>
                                     <td>
-                                        @if ($rent->notes = 0 && $rent->reserved = 0)
-                                            <a href="rentals/{{$rent->id}}/edit">Book it</a>
-                                        @elseif ($rent->notes = 0 && $rent->reserved = 1)
-                                            <a href="rentals/{{$rent->id}}/edit" style="color:yellow">Not paid yet</a>
-                                        @elseif($rent->notes != 0) 
+                                        @if ($rent->notes = null)
+                                            @if ($rent->reserved === 0)
+                                                <a href="rentals/{{$rent->id}}/edit">Book it</a>
+                                            @endif 
+                                            @if ($rent->reserved === 1)
+                                                <a href="rentals/{{$rent->id}}/edit" style="color:yellow">Not paid yet</a>
+                                            @endif                                           
+                                        @elseif($rent->notes != null) 
                                             NOT AVAILABLE(paid)
                                         @endif
                                     </td>
