@@ -125,8 +125,13 @@
                     @endauth
                 </div>
             @endif
-        </div>
+        </div>       
         <div class="container">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <span class="text-danger">Your session will expire in 60 sec.</span>
+                </div>
+            </div>
             <div class="form-row"> 
                 <div class="form-group col-md-6">                   
                     <label for="amount">You are paying:</label>            
@@ -161,6 +166,11 @@
         </div>  
         
         <script>
+            (function() {
+                setTimeout(function() {
+                    window.location.replace('/rentals');
+                }, 5000);                
+            })();
             var stripe = Stripe('{{config("services.stripe.key")}}');
 
             var elements = stripe.elements();
