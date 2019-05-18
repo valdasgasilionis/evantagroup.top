@@ -48,6 +48,9 @@
                                                 </form>
                                             @endif                                        
                                     </td>
+                                    <td>
+                                        <a href="/rentals/{{$rent->id}}/modify">Edit</a>
+                                    </td>
                                         @endif
                                 </tr>
                             @endforeach    
