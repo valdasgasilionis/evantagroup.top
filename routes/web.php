@@ -147,3 +147,10 @@ Route::post('/intent', function(Request $request) {
 // Return a response to acknowledge receipt of the event
 http_response_code(200); // PHP 5.4 or greater
 });
+//change status back to reserved->0 if redirected form expired session
+Route::get('/expired/{id}', function($id) {
+    $rental = Rental::find($id);
+    $rental->reserved = 0;
+    $rental->save();
+    return redirect('/rentals');
+});

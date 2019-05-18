@@ -129,7 +129,7 @@
         <div class="container">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <span class="text-danger">Your session will expire in 60 sec.</span>
+                    <span class="text-danger">Your session will expire in 15 sec.</span>
                 </div>
             </div>
             <div class="form-row"> 
@@ -168,8 +168,8 @@
         <script>
             (function() {
                 setTimeout(function() {
-                    window.location.replace('/rentals');
-                }, 5000);                
+                    window.location.replace('/expired/{{$id}}');
+                }, 15000);                
             })();
             var stripe = Stripe('{{config("services.stripe.key")}}');
 
