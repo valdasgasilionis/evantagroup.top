@@ -24,7 +24,7 @@
                 background-color:#fff;
                 background-image:linear-gradient(to bottom, #E8F3E8, #305A30);
                 background-size: cover;
-                background-repeat: repeat-y;
+                background-repeat: no-repeat;
                 color: #000;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
