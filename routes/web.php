@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Rental;
 use App\Notifications\Webhook;
 use App\Mail\PaymentReceived;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
