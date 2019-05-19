@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Rental;
 use App\Notifications\Webhook;
+use App\Mail\PaymentReceived;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,6 +131,8 @@ Route::post('/webhook', function(Request $request) {
         //create notification -> now it is stored in notifications table only;
     $user = App\User::find(1);
     $user->notify(new Webhook($id_number));
+    //send admin email about payment success
+    MAIL::to('gasilionisvaldas@gmail.com')->send(new PaymentReceived($request));
     // Return a response to acknowledge receipt of the event
     // PHP 5.4 or greater
     http_response_code(200);
