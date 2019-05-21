@@ -187,3 +187,9 @@ Route::get('/expired/{id}', function($id) {
     }
      return redirect('/rentals');
 });
+//MAIL TEST
+Route::get('/mail', function() {
+    $rental = Rental::find(1);
+    MAIL::to('valdasgasilionis@yahoo.com')->send(new PaymentReceived($rental));
+    return redirect('/');
+});
