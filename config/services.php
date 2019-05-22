@@ -33,7 +33,7 @@ return [
             'Tags' => [
                 [
                     'Name' => 'evantagroup.top',
-                    'title' => 'mano test emailas',
+                    'Value' => 'mano test emailas',
                 ],
             ],
         ],
