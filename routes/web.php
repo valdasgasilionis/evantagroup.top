@@ -163,7 +163,8 @@ Route::post('/webhook', function(Request $request) {
 				$mail->Subject = 'webhook received';
 				$mail->Body    = $request;						// message
 
-				$mail->send();
+                $mail->send();
+                http_response_code(200);
 				return back()->with('success','Message has been sent!');
 			} catch (Exception $e) {
 				return back()->with('error','Message could not be sent.');
@@ -171,7 +172,7 @@ Route::post('/webhook', function(Request $request) {
     /* MAIL::to('gasilionisvaldas@gmail.com')->send(new PaymentReceived($request)); */
     // Return a response to acknowledge receipt of the event
     // PHP 5.4 or greater
-    http_response_code(200);
+    
     });
 
 Auth::routes();
