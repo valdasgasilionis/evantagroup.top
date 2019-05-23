@@ -136,7 +136,7 @@ Route::post('/webhook', function(Request $request) {
     //send admin email about payment success
     $mail = new PHPMailer(true);                            // Passing `true` enables exceptions
 
-			try {
+		/* 	try { */
 				// Server settings
 	    	$mail->SMTPDebug = 0;                                	// Enable verbose debug output
 				$mail->isSMTP();                                     	// Set mailer to use SMTP
@@ -165,10 +165,10 @@ Route::post('/webhook', function(Request $request) {
 
                 $mail->send();
                 http_response_code(200);
-				return back()->with('success','Message has been sent!');
+			/* 	return back()->with('success','Message has been sent!');
 			} catch (Exception $e) {
 				return back()->with('error','Message could not be sent.');
-			}	
+			} */	
     /* MAIL::to('gasilionisvaldas@gmail.com')->send(new PaymentReceived($request)); */
     // Return a response to acknowledge receipt of the event
     // PHP 5.4 or greater
