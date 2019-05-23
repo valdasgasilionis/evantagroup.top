@@ -226,4 +226,5 @@ Route::get('/expired/{id}', function($id) {
 //MAIL TEST
 Route::get('/mail', 'PhpMailerController@fetchForm');
 Route::post('/mail', 'PhpMailerController@sendEmail'); 
-
+//testing aws_sdk php mail functionality
+Route::get('/aws', 'AwsSdkController@mail');
