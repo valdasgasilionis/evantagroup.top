@@ -26,8 +26,8 @@ class PhpmailerController extends Controller {
 				$mail->isSMTP();                                     	// Set mailer to use SMTP
 				$mail->Host = 'email-smtp.eu-west-1.amazonaws.com';								// Specify main and backup SMTP servers
 				$mail->SMTPAuth = true;                              	// Enable SMTP authentication
-				$mail->Username = 'AKIAYBRHXFTPCYJ4SHWU';             // SMTP username
-				$mail->Password = 'BFqV58CZE31SX9ubZlXTWilod27oqoIp1QkhrjnoZEIp';              // SMTP password
+				$mail->Username = '';             // SMTP username
+				$mail->Password = '';              // SMTP password
 				$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 				$mail->Port = 587;                                    // TCP port to connect to
 

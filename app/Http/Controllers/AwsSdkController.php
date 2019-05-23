@@ -17,10 +17,7 @@ $SesClient = new SesClient([
     'profile' => 'default',
     'version' => '2010-12-01',
     'region' => 'eu-west-1',
-    'credentials' => [
-        'key'    => 'AKIAYBRHXFTPCYJ4SHWU',
-        'secret' => 'BFqV58CZE31SX9ubZlXTWilod27oqoIp1QkhrjnoZEIp',
-    ],
+  
    ]);
    // Replace sender@example.com with your "From" address.
    // This address must be verified with Amazon SES.
