@@ -5,7 +5,7 @@ use App\Rental;
 use App\Notifications\Webhook;
 use App\Mail\PaymentReceived;
 use Illuminate\Support\Facades\Mail;
-
+use PHPMailer\PHPMailer\PHPMailer;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -188,8 +188,6 @@ Route::get('/expired/{id}', function($id) {
      return redirect('/rentals');
 });
 //MAIL TEST
-Route::get('/mail', function() {
-    $rental = Rental::find(1);
-    MAIL::to('valdasgasilionis@yahoo.com')->send(new PaymentReceived($rental));
-    return redirect('/');
-});
+Route::get('/mail', 'PhpMailerController@fetchForm');
+Route::post('/mail', 'PhpMailerController@sendEmail'); 
+
