@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Rental;
 use App\Notifications\Webhook;
 use App\Mail\PaymentReceived;
+use App\Mail\RentPaidMail;
 use Illuminate\Support\Facades\Mail;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -230,6 +231,6 @@ Route::post('/mail', 'PhpMailerController@sendEmail');
 Route::get('/aws', 'AwsSdkController@mail');
 Route::get('sesmail', function() {
     $rental = Rental::find(1);
-    Mail::to('valdasgasilionis@yahoo.com')->send(new PaymentReceived($rental));
+    Mail::to('valdasgasilionis@yahoo.com')->send(new RentPaidMail($rental));
     return back();
 });

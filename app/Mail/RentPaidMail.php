@@ -6,16 +6,14 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Http\Request;
 
-class PaymentReceived extends Mailable
+class RentPaidMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $request;
 
     /**
      * Create a new message instance.
-     * 
      *
      * @return void
      */
@@ -31,6 +29,6 @@ class PaymentReceived extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail');
+        return $this->markdown('RentPaid');
     }
 }
