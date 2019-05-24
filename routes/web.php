@@ -230,7 +230,8 @@ Route::post('/mail', 'PhpMailerController@sendEmail');
 //testing aws_sdk php mail functionality
 Route::get('/aws', 'AwsSdkController@mail');
 Route::get('sesmail', function() {
-    $rental = Rental::find(1);
+    $rental = Rental::find(5);
+    /* dd($rental); */
     Mail::to('valdasgasilionis@yahoo.com')->send(new RentPaidMail($rental));
     return back();
 });
