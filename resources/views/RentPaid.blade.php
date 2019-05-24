@@ -6,8 +6,8 @@ Rental start date: {{$rental->start}}
 Rental end date: {{$rental->end}}
 Price paid: {{$rental->price}}
 
-@component('mail::button', ['url' => ''])
-No link
+@component('mail::button', ['url' => '/'])
+VANAGUPE
 @endcomponent
 
 Thanks,<br>
