@@ -18,7 +18,7 @@ class RentPaidMail extends Mailable
      *
      * @return void
      */
-    public function __construct($rental)
+    public function __construct(Rental $rental)
     {
         $this->rental = $rental;
     }
