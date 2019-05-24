@@ -13,7 +13,7 @@ class AwsSdkController extends Controller
 // using an AWS Region other than US West (Oregon). Change the value of the
 // profile parameter if you want to use a profile in your credentials file
 // other than the default.
-include('/vendor/autoload.php');
+include('../vendor/autoload.php');
 $SesClient = new SesClient([
     'profile' => 'default',
     'version' => '2010-12-01',
