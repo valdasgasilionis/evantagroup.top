@@ -233,5 +233,5 @@ Route::get('sesmail', function() {
     $rental = Rental::find(5);
     /* dd($rental); */
     Mail::to('valdasgasilionis@yahoo.com')->send(new RentPaidMail($rental));
-    return back();
+    return redirect('/');
 });
