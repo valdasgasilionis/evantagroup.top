@@ -10,16 +10,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class RentPaidMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $request;
+    public $rental;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($request)
+    public function __construct($rental)
     {
-        $this->request = $request;
+        $this->rental = $rental;
     }
 
     /**

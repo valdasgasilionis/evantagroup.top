@@ -1,10 +1,10 @@
 @component('mail::message')
 Payment received
 
-Rental id number: {{$request->id}}
-Rental start date: {{$request->start}}
-Rental end date: {{$request->end}}
-Price paid: {{$request->price}}
+Rental id number: {{$rental->id}}
+Rental start date: {{$rental->start}}
+Rental end date: {{$rental->end}}
+Price paid: {{$rental->price}}
 
 @component('mail::button', ['url' => ''])
 No link
