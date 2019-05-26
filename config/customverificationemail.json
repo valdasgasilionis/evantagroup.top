@@ -1,0 +1,8 @@
+{
+    "TemplateName": "PVZ",
+    "FromEmailAddress": "gasilionisvaldas@gmail.com",
+    "TemplateSubject": "Prašau, patvirtinkinte savo emilą per amazon ses",
+    "TemplateContent": "čia mano kažkos tekstas",
+    "SuccessRedirectionURL": "https://evantagroup.top",
+    "FailureRedirectionURL": "https://evantagroup.top"
+}
