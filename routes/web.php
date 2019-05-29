@@ -68,8 +68,8 @@ Route::get('/rentals', function() {
     $rentals = Rental::all();
     return view('index', [
         'rentals'=> $rentals
-    ])->middleware('verified');
-});
+    ]);
+})->middleware('verified');
 //create new rental instance
 Route::post('/rentals', function(Request $request) {
     $rental = new Rental;
