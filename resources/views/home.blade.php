@@ -64,7 +64,46 @@
         </div>    
     </div>
     </main>
-</div>
+    @if (auth()->check())
+        
+   
+    @if (auth()->user()->isAdmin())
+
+    <div class="container-fluid turinys">
+        <h3>List of users</h3>
+            <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">email</th>
+                        <th scope="col">Registration date</th>
+                        <th scope="col">Verify</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                          @foreach ($vartotojai as $vartotojas)
+                            @if ($vartotojas->email_verified_at === null)           
+                                <tr>
+                                    <td>{{$vartotojas->id}}</th>
+                                    <td>{{$vartotojas->email}}</td>
+                                    <td>{{$vartotojas->created_at}}</td>
+                                    <td>
+                                        <form action="/verify_user"  method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$vartotojas->id}}">
+                                            <input type="checkbox" name="email_verified_at" onchange='this.form.submit()'>
+                                       {{--  {{$vartotojas->email_verified_at ? "yes" : "no"}} --}}
+                                        </form>
+                                    </td> 
+                                </tr>
+                            @endif     
+                          @endforeach             
+                    </tbody>
+                  </table>
+    </div> 
+    @endif 
+    @endif
 @endsection
 
 

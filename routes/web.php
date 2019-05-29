@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Rental;
+use App\User;
 use App\Notifications\Webhook;
 use App\Mail\PaymentReceived;
 use App\Mail\RentPaidMail;
@@ -19,10 +20,22 @@ use PHPMailer\PHPMailer\Exception;
 |
 */
 
-Route::get('/', function () { 
-
-    return view('home');
+Route::get('/', function () {
+  
+     $vartotojai = User::all();
+    /*  dd($users); */
+ 
+    return view('home', ['vartotojai' => $vartotojai]);
 });
+
+/* Route::post('/verify_user', function(Request $request) {
+    $user_id = $request->id;
+    $user = User::find($user_id);
+    $user->email_verified_at = now();
+    $user->update();
+
+    return back();
+}); */
 
 
 Route::post('/charge', function (Request $request) {
@@ -55,7 +68,7 @@ Route::get('/rentals', function() {
     $rentals = Rental::all();
     return view('index', [
         'rentals'=> $rentals
-    ]);
+    ])->middleware('verify');
 });
 //create new rental instance
 Route::post('/rentals', function(Request $request) {
@@ -149,7 +162,7 @@ Mail::to('ooto@simulator.amazonses.com')->send(new RentPaidMail($rental));
     
     });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
