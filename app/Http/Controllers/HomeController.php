@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Mail\ConfirmNewUserEmail;
 
@@ -24,8 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $email = session('newuser');
-        Mail::to('valdasgasilionis@yahoo.com')->send(new ConfirmNewUserEmail($email));
+        if (session('newuser')) {
+            $email = session('newuser');
+            Mail::to('valdasgasilionis@yahoo.com')->send(new ConfirmNewUserEmail($email)); 
+        }        
         
         return view('home');
     }
