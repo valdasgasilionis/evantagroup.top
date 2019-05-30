@@ -37,6 +37,14 @@ Route::get('/', function () {
     return back();
 }); */
 
+Route::get('confirm_new/{email}', function($email) {
+    $user = User::where('email', $email)->first()->get();
+    $user->remember_token = 1;
+    $user->update();
+    
+    return redirect('/');
+});
+
 
 Route::post('/charge', function (Request $request) {
 //first let's check if reserved status is still - available
