@@ -37,8 +37,8 @@ Route::get('/', function () {
     return back();
 }); */
 
-Route::get('confirm_new/{email}', function($email) {
-    $user = User::where('email', $email)->first()->get();
+Route::get('confirm_new/{id}', function($id) {
+    $user = User::find($id);
     $user->remember_token = 1;
     $user->update();
     
