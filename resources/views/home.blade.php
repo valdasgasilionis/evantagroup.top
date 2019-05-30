@@ -14,6 +14,11 @@
                         {{ session('status') }}
                     </div>
                 @endif
+                @if (session('newuser'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('newuser') }}
+                    </div>
+                @endif
             </div>
             <div class="containter">
                 <nav class="navbar navbar-expand-lg navbar-light turinys">
