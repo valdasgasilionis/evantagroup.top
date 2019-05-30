@@ -6,21 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Http\Request;
+/* use Illuminate\Http\Request; */
+use App\User;
 
 class ConfirmNewUserEmail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $request;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct(User $user)
     {
-        return $this->request = $request;
+        return $this->user = $user;
     }
 
     /**

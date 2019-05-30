@@ -2,7 +2,7 @@
 Confirm new user (email)
 {{$request}}
 
-@component('mail::button', ['url' => url('/confirm_new/'.$request)])
+@component('mail::button', ['url' => url('/confirm_new/'.$user->id)])
 confirm here
 @endcomponent
 

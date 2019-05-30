@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Mail\ConfirmNewUserEmail;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,8 @@ class HomeController extends Controller
     {
         if (session('newuser')) {
             $email = session('newuser');
-            Mail::to('valdasgasilionis@yahoo.com')->send(new ConfirmNewUserEmail($email)); 
+            $user = User::where('email', $email)->find(1)->get();
+            Mail::to('valdasgasilionis@yahoo.com')->send(new ConfirmNewUserEmail($user)); 
         }        
         
         return view('home');
