@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $email = session('newuser');
+        dd($email);
         return view('home');
     }
 }
