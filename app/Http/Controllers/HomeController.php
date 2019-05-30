@@ -27,7 +27,8 @@ class HomeController extends Controller
     {
         if (session('newuser')) {
             $email = session('newuser');
-            $user = User::where('email', $email)->get();
+            $user_collection = User::where('email', $email)->get();
+            $user = $user_collection[0];
             Mail::to('valdasgasilionis@yahoo.com')->send(new ConfirmNewUserEmail($user)); 
         }        
         
