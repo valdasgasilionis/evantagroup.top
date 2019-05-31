@@ -16,7 +16,7 @@
                 @endif
                 @if (session('newuser'))
                     <div class="alert alert-success" role="alert">
-                        {{ session('newuser') }}
+                        New User created: {{ session('newuser') }}
                     </div>
                 @endif
             </div>
