@@ -157,7 +157,7 @@ Route::post('/webhook', function(Request $request) {
    /*  $user = App\User::find(1);
     $user->notify(new Webhook($id_number)); */
 //send email to admin about successful payment
-Mail::to('ooto@simulator.amazonses.com')->send(new RentPaidMail($rental));
+Mail::to('valdas.gasilionis@gmail.com')->send(new RentPaidMail($rental));
     
     http_response_code(200);
 			/* 	return back()->with('success','Message has been sent!');
