@@ -27,7 +27,7 @@
                                 <tr>
                                         @if (auth()->check())
                                             @if (auth()->user()->isAdmin())
-                                                 <th scope="row">{{$rent->id}}</th>
+                                    <td>{{$rent->id}}</td>
                                             @endif                                       
                                         @endif                                    
                                     <td>{{$rent->start}}</td>
