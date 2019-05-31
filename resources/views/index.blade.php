@@ -14,10 +14,11 @@
                                 <th scope="col">start</th>
                                 <th scope="col">End</th>
                                 <th scope="col">Price</th>
+                                <th scope="col">Available?</th> 
                                     @if (auth()->check())
-                                        @if (auth()->user()->isAdmin())
-                                <th scope="col">Available?</th>                                    
+                                        @if (auth()->user()->isAdmin())                                                                   
                                 <th scope="col">Paid?</th> 
+                                <th scope="col">Modify</th> 
                                         @endif                                
                                     @endif
                             </tr>
