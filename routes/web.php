@@ -154,8 +154,8 @@ Route::post('/webhook', function(Request $request) {
 
     
         //create notification -> now it is stored in notifications table only;
-    $user = App\User::find(1);
-    $user->notify(new Webhook($id_number));
+   /*  $user = App\User::find(1);
+    $user->notify(new Webhook($id_number)); */
 //send email to admin about successful payment
 Mail::to('ooto@simulator.amazonses.com')->send(new RentPaidMail($rental));
     
