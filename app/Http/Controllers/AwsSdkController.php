@@ -14,6 +14,7 @@ class AwsSdkController extends Controller
 // profile parameter if you want to use a profile in your credentials file
 // other than the default.
 include('../vendor/autoload.php');
+//some comment to update git
 $SesClient = new SesClient([
     'profile' => 'default',
     'version' => '2010-12-01',
