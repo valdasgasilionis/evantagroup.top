@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Aws\Credentials\CredentialProvider;
 use Illuminate\Http\Request;
 use Aws\Ses\SesClient;
 use Aws\Exception\AwsException;
@@ -20,11 +21,7 @@ $SesClient = new SesClient([
     'profile' => 'default',
     'version' => '2010-12-01',
     'region' => 'eu-west-1',
-    'credentials' => [
-        'key' => 'AKIAYBRHXFTPGAZSIMAS',
-        'secret' => 'YpCiqkpClKhHJhMnJeDIGkGkyTlNiyO+zRYqo8Mb',
-    ]
-  
+    'credentials' => CredentialProvider::defaultProvider(),  
    ]);
    // Replace sender@example.com with your "From" address.
    // This address must be verified with Amazon SES.
