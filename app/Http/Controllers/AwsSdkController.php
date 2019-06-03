@@ -20,6 +20,10 @@ $SesClient = new SesClient([
     'profile' => 'default',
     'version' => '2010-12-01',
     'region' => 'eu-west-1',
+    'credentials' => [
+        'key' => 'AKIAYBRHXFTPGAZSIMAS',
+        'secret' => 'YpCiqkpClKhHJhMnJeDIGkGkyTlNiyO+zRYqo8Mb',
+    ]
   
    ]);
    // Replace sender@example.com with your "From" address.
