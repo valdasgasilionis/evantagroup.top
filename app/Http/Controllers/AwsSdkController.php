@@ -13,6 +13,7 @@ class AwsSdkController extends Controller
 // using an AWS Region other than US West (Oregon). Change the value of the
 // profile parameter if you want to use a profile in your credentials file
 // other than the default.
+putenv('HOME=/var/www/html/evantagroup.top');
 include('../vendor/autoload.php');
 //some comment to update git
 $SesClient = new SesClient([
