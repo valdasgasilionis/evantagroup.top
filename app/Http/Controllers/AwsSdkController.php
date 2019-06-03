@@ -15,13 +15,15 @@ class AwsSdkController extends Controller
 // profile parameter if you want to use a profile in your credentials file
 // other than the default.
 /* putenv('HOME=/var/www/html/evantagroup.top'); */
+$provider = CredentialProvider::env();
+
 include('../vendor/autoload.php');
 //some comment to update git
 $SesClient = new SesClient([
     'profile' => 'default',
     'version' => '2010-12-01',
     'region' => 'eu-west-1',
-    'credentials' => CredentialProvider::defaultProvider(),  
+    'credentials' => $provider,  
    ]);
    // Replace sender@example.com with your "From" address.
    // This address must be verified with Amazon SES.
