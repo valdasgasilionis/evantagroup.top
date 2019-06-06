@@ -236,3 +236,5 @@ Route::get('/success', function() {
 Route::get('/failure', function() {
     dd('failure');
 });
+Route::get('/myemail', 'CustomEmailController@input');
+Route::post('/myemail', 'CustomEmailController@send');
