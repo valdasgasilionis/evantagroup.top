@@ -31,17 +31,14 @@ class CustomEmailController extends Controller
         $result = $SesClient->sendTemplatedEmail([
             
     'Destination' => [ // REQUIRED
-        'ToAddresses' => $request->email,
+        'ToAddresses' => [$request->email],
     ],
    
     'Source' => $EmailAddress, // REQUIRED
   
     'Template' => $Template, // REQUIRED
 
-    'TemplateData' => [
-        'email' => $EmailAddress,
-        'age' => $request->age
-    ], // REQUIRED
+    'TemplateData' => "{ \"email\":\"$EmailAddress\", \"age\": \"$request->age\" }",     // REQUIRED
         ]);
     } catch (AwsException $e) {
                 // output error message if fails
