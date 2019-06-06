@@ -229,3 +229,10 @@ Route::get('/aws', 'AwsSdkController@mail');
   /*   Mail::to('valdasgasilionis@yahoo.com')->send(new RentPaidMail($rental));
     return redirect('/');  */
 /* }); */
+Route::get('/custom', 'CustomVerificationController@mail');
+Route::get('/success', function() {
+    dd('success');
+});
+Route::get('/failure', function() {
+    dd('failure');
+});
