@@ -24,7 +24,7 @@ class CustomEmailController extends Controller
             'region' => 'eu-west-1',
         ]);
     //input parameters
-    $EmailAddress = 'ugnegasi2010@gmail.com';
+    $EmailAddress = 'admin@evantagroup.top';
     $Template = 'sveikinimas';
 
     try {
@@ -38,10 +38,10 @@ class CustomEmailController extends Controller
   
     'Template' => $Template, // REQUIRED
 
-    'TemplateData' => "{ \"email\":\"$EmailAddress\", \"age\": \"$request->age\" }",     // REQUIRED
+    'TemplateData' => "{ \"email\":\"$request->email\", \"age\": \"$request->age\" }",     // REQUIRED
         ]);
         return redirect('/');
-        
+
     } catch (AwsException $e) {
                 // output error message if fails
                 echo $e->getMessage();
