@@ -1,0 +1,8 @@
+{
+    "Template": {
+        "TemplateName": "sveikinimas",
+        "SubjectPart": "Laba diena, {{email}}!",
+        "HtmlPart": "<h1>Hello {{email}},</h1><p>Tau dabar yra {{age}} metai.</p>",
+        "TextPart": "Sveiki {{email}},\r\nTau yra {{age}} metai."
+    }
+}
