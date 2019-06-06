@@ -40,6 +40,8 @@ class CustomEmailController extends Controller
 
     'TemplateData' => "{ \"email\":\"$EmailAddress\", \"age\": \"$request->age\" }",     // REQUIRED
         ]);
+        return redirect('/');
+        
     } catch (AwsException $e) {
                 // output error message if fails
                 echo $e->getMessage();
