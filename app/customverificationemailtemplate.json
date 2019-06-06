@@ -1,5 +1,4 @@
 {
-    "region": "eu-west-1",
     "TemplateName": "custom_email",
     "FromEmailAddress": "admin@evantagroup.top",
     "TemplateSubject": "Patvirtinkite savo elektroninį pašto adresą",
